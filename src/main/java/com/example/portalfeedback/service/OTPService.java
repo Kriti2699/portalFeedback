@@ -1,6 +1,4 @@
 package com.example.portalfeedback.service;
 
-public interface UserService {
-
-
+public class OTPService {
 }
