@@ -6,6 +6,7 @@ import com.example.portalfeedback.service.UserRegService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserRegImpl implements UserRegService {
@@ -34,6 +35,11 @@ public class UserRegImpl implements UserRegService {
     @Override
     public List<User> getAllUser() {
         return List.of();
+    }
+
+    @Override
+    public Optional<User> findById(String id) {
+        return Optional.empty();
     }
 
 
