@@ -13,7 +13,7 @@ A Spring Boot application to collect and manage user feedback.
 
 - Java
 - Spring Boot
-- MySQL
+- PostgreSQL
 
 ## Run Project
 
