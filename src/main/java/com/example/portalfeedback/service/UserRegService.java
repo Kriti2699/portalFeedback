@@ -13,6 +13,6 @@ public interface UserRegService {
     boolean existsByEmail(String email);
     boolean findByUsername(String username);
     List<User> getAllUser();
-    Optional<User> findById(String id);
+    Optional<User> getById(String id);
 
 }

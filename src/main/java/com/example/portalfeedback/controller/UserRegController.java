@@ -1,10 +1,8 @@
 package com.example.portalfeedback.controller;
 
 import com.example.portalfeedback.entity.User;
-import com.example.portalfeedback.repositoty.UserRegRepo;
 import com.example.portalfeedback.service.UserRegService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+@RestController
 @RequestMapping("/userReg")
 public class UserRegController {
 
@@ -72,7 +71,7 @@ public class UserRegController {
         Map<String, Object> response = new HashMap<>();
         try {
             response.put("Status", "Success");
-            response.put("data", userRegService.findById(id));
+            response.put("data", userRegService.getById(id));
         } catch (Exception e) {
             response.put("Status", "Failure");
             response.put("Error", e.getMessage());
