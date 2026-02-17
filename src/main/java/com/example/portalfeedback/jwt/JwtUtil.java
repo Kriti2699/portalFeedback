@@ -15,23 +15,23 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {
 
-    private final String SECRET="Kriti23@2677889163839390000";
+    private static final String SECRET="kritisharmatitin264653829929082736465645";
 
-    private SecretKey getSigningKey() {
+    private static SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    public String extractUsername(String token) {
+    public static String extractUsername(String token) {
         Claims claims=extractAllClaims(token);
         return claims.getSubject();
     }
 
 
-    public Date extractExpiration(String token) {
+    public static Date extractExpiration(String token) {
         return (Date) extractAllClaims(token).getExpiration();
     }
 
-    private Claims extractAllClaims(String token) {
+    private static Claims extractAllClaims(String token) {
         return Jwts.parser()
                 .verifyWith(getSigningKey())
                 .build()
@@ -40,12 +40,12 @@ public class JwtUtil {
 
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails) {
+    public static boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpire(token));
     }
 
-    private boolean isTokenExpire(String token) {
+    private static boolean isTokenExpire(String token) {
         return extractExpiration(token).before(new java.util.Date());
     }
     public String generateToken(String username) {
