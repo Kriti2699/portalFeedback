@@ -6,8 +6,6 @@ import com.example.portalfeedback.jwt.JwtUtil;
 import com.example.portalfeedback.repositoty.UserRegRepo;
 import com.example.portalfeedback.service.EmailService;
 import com.example.portalfeedback.service.OTPService;
-import com.example.portalfeedback.service.UserRegService;
-import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;

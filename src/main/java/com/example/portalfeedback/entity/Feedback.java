@@ -1,8 +1,8 @@
 package com.example.portalfeedback.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.portalfeedback.helper.Generate;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -11,14 +11,22 @@ import java.time.LocalDateTime;
 public class Feedback {
     @Id
     private String id;
-    private String userid;
+    @Transient
+    private Generate generate=new Generate();
+//    private String userid;
     private String message;
     private int rating;
     private boolean is_anonymous;
     private String status;
 
+    @Column(updatable = false)
     private LocalDateTime createon;
     private LocalDateTime updateon;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
+    private User user;
 
     public Feedback(){
 
@@ -32,13 +40,13 @@ public class Feedback {
         this.id = id;
     }
 
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
+//    public String getUserid() {
+//        return userid;
+//    }
+//
+//    public void setUserid(String userid) {
+//        this.userid = userid;
+//    }
 
     public String getMessage() {
         return message;
