@@ -7,46 +7,48 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="pf_feedback")
+@Table(name = "pf_feedback")
 public class Feedback {
     @Id
     private String id;
-    @Transient
-    private Generate generate=new Generate();
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 //    private String userid;
     private String message;
     private int rating;
     private boolean is_anonymous;
     private String status;
 
+
     @Column(updatable = false)
     private LocalDateTime createon;
     private LocalDateTime updateon;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = true)
     @JsonBackReference
     private User user;
 
-    public Feedback(){
-
+    public Feedback() {
+        this.id = new Generate().generateId();
     }
 
     public String getId() {
         return id;
     }
 
+
     public void setId(String id) {
         this.id = id;
     }
-
-//    public String getUserid() {
-//        return userid;
-//    }
-//
-//    public void setUserid(String userid) {
-//        this.userid = userid;
-//    }
 
     public String getMessage() {
         return message;

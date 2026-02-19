@@ -26,7 +26,7 @@ public class UserRegController {
         Map<String, Object> response = new HashMap<>();
         u.setCreateon(LocalDateTime.now());
         u.setUpdateon(LocalDateTime.now());
-        u.setRole("ROLE_USER");
+        u.setRole("USER");
         User user = new User();
 
         try {
