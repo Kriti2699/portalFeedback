@@ -7,10 +7,7 @@ import com.example.portalfeedback.repositoty.UserRegRepo;
 import com.example.portalfeedback.service.FeedbackService;
 import com.sun.net.httpserver.Authenticator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -42,7 +39,6 @@ public class FeedbackController {
             User user = null;
 
             if (!isAnonymous) {
-
                 // If not anonymous → user_id is required
                 if (!payload.containsKey("user_id")) {
                     throw new RuntimeException("user_id is required when not anonymous");
@@ -57,8 +53,6 @@ public class FeedbackController {
             } else {
                 feedback.setUser(null);
             }
-
-
             feedback.setCreateon(LocalDateTime.now());
             feedback.setUpdateon(LocalDateTime.now());
             feedback.setMessage(payload.get("message").toString());
@@ -72,6 +66,36 @@ public class FeedbackController {
 
             response.put("Status", "Failure");
             response.put("data", e.getMessage());
+        }
+        return response;
+    }
+
+    @GetMapping("/getfeedback/{id}")
+    Map<String,Object> getById(@PathVariable String id) {
+        Map<String,Object> response = new HashMap<>();
+
+        try {
+            response.put("Status", "Success");
+            response.put("data",feedbackService.getByID(id));
+        }
+        catch (Exception e) {
+            response.put("Status", "Failure");
+            response.put("data",e.getMessage());
+        }
+        return response;
+    }
+
+    @GetMapping("/getAllfeedback")
+    Map<String,Object> getAllFeedback() {
+        Map<String,Object> response = new HashMap<>();
+
+        try {
+            response.put("Status", "Success");
+            response.put("data",feedbackService.getAllFeedback());
+        }
+        catch (Exception e) {
+            response.put("Status", "Failure");
+            response.put("data",e.getMessage());
         }
         return response;
     }

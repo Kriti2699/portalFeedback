@@ -21,7 +21,7 @@ public class FeedbackImpl implements FeedbackService {
 
     @Override
     public List<Feedback> getAllFeedback() {
-        return List.of();
+        return feedbackRepo.findAll();
     }
 
     @Override

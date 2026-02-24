@@ -36,7 +36,7 @@ public class UserRegImpl implements UserRegService {
 
     @Override
     public List<User> getAllUser() {
-        return List.of();
+        return userRegRepo.findAll();
     }
 
     @Override
